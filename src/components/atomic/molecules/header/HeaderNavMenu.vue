@@ -10,10 +10,15 @@
         </template>
 
         <v-list>
-            <v-list-item>
+            <v-list-item v-if="isAdministrator">
                 <HeaderNavMenuLink :to="{ name: 'user-index' }">
                     user list
                 </HeaderNavMenuLink>
+            </v-list-item>
+            <v-list-item>
+                <HeaderNavMenuLabel @click="onLogoutLabelClick">
+                    logout
+                </HeaderNavMenuLabel>
             </v-list-item>
         </v-list>
     </v-menu>
@@ -23,9 +28,22 @@
     import {Component, Vue} from "vue-property-decorator";
     import LinkComponent from "@/components/atomic/atoms/link/LinkComponent.vue";
     import HeaderNavMenuLink from "@/components/atomic/atoms/header/HeaderNavMenuLink.vue";
+    import HeaderNavMenuLabel from "@/components/atomic/atoms/header/HeaderNavMenuLabel.vue";
+    import {Getter} from "vuex-class";
+    import {AccountRole} from "@/library/account/AccountRole";
+
     @Component({
-        components: {HeaderNavMenuLink, LinkComponent}
+        components: {HeaderNavMenuLabel, HeaderNavMenuLink, LinkComponent}
     })
     export default class HeaderNavMenu extends Vue {
+        @Getter("account/isAllowed") public accountIsAllowed!: (_: AccountRole) => boolean;
+
+        public get isAdministrator() {
+            return this.accountIsAllowed(AccountRole.Administrator);
+        }
+
+        public onLogoutLabelClick() {
+            this.$router.push({name: 'logout'})
+        }
     }
 </script>

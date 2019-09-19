@@ -1,7 +1,6 @@
 <template>
     <VNavigationDrawer v-show="show" permanent>
         <VListItem>
-
         </VListItem>
     </VNavigationDrawer>
 </template>

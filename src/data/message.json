@@ -1,0 +1,22 @@
+{
+  "ja" : {
+    "common" : {
+      "routing" : {
+        "no-authority" : "権限が足りません"
+      },
+      "wraxios" : {
+        "unregistered-error-message" : "予期せぬエラー（{errorCode}）",
+        "role-changed" : "権限が変更されました"
+      }
+    },
+    "error" : {
+      "api" : {
+        "/user" : {
+          "GET" : {
+            "test" : "GetError です"
+          }
+        }
+      }
+    }
+  }
+}

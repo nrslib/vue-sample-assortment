@@ -14,7 +14,7 @@
     })
     export default class HeaderTitle extends Vue {
         public onClick() {
-            this.$router.push({name: 'top-index'});
+            this.$router.push({name: 'top'});
         }
     }
 </script>
