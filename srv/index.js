@@ -2,6 +2,7 @@ import express from 'express';
 import authorize from './middlewares/authorize-middleware';
 import cors from 'cors';
 import session from 'express-session';
+import sessionVerify from './middlewares/session-verify-middleware';
 import authority from './middlewares/authority-middleware';
 import errorHandler from './middlewares/error-handler-middleware';
 
@@ -19,6 +20,7 @@ export default (app, http) => {
             maxAge: 30 * 60 * 1000
         }
     }));
+    app.use(sessionVerify);
     app.use(authority);
 
     app.use('/account', require('./routes/account'));

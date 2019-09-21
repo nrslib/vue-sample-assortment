@@ -1,3 +1,5 @@
+import {AccountRole} from "../../../../library/account/AccountRole";
+import {AccountRole} from "../../../../library/account/AccountRole";
 <template>
     <v-menu
             left
@@ -37,9 +39,10 @@
     })
     export default class HeaderNavMenu extends Vue {
         @Getter("account/isAllowed") public accountIsAllowed!: (_: AccountRole) => boolean;
+        @Getter("account/isAllowedAny") public accountIsAllowedAny!: (_: AccountRole[]) => boolean;
 
         public get isAdministrator() {
-            return this.accountIsAllowed(AccountRole.Administrator);
+            return this.accountIsAllowedAny([AccountRole.Administrator, AccountRole.Advanced]);
         }
 
         public onLogoutLabelClick() {

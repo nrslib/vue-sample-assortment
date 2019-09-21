@@ -10,6 +10,7 @@ import router from "@/router";
 import i18n from '@/plugins/i18n';
 import ServiceLocator from "@/library/service/ServiceLocator";
 import {MessageType} from "@/library/service/message/MessageType";
+import {RawLocation, Route} from "vue-router";
 
 export default class WraxiosCore {
     private queueNum: number = 0;
@@ -145,6 +146,11 @@ const notifyErrorToMessage: IErrorHandler = (response: IErrorResponse) => {
         .map((x) => x.message)
         .forEach((message) => ServiceLocator.instance.messageService.addMessage(MessageType.Error, message));
 };
+
+export function pushNextWithError(response: IErrorResponse, location: RawLocation) {
+    notifyeOnNextRoute(response);
+    router.push(location);
+}
 
 /**
  * Show message on next route

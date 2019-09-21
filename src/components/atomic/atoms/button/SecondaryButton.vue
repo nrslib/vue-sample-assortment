@@ -1,5 +1,5 @@
 <template>
-    <v-btn color="primary" :type="type" @click="onClick">
+    <v-btn :type="type" @click="onClick">
         <slot />
     </v-btn>
 </template>
@@ -9,6 +9,6 @@
     import ButtonBase from "@/components/atomic/atoms/button/ButtonBase";
 
     @Component
-    export default class PrimaryButton extends ButtonBase {
+    export default class SecondaryButton extends ButtonBase {
     }
 </script>

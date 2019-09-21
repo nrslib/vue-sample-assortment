@@ -1,5 +1,3 @@
-import {AccountRole} from "../../../../library/account/AccountRole";
-import {AccountRole} from "../../../../library/account/AccountRole";
 <template>
     <VAppBar>
         <VAppBarNavIcon />
@@ -30,11 +28,7 @@ import {AccountRole} from "../../../../library/account/AccountRole";
         @Getter("account/role") public accountRole!: AccountRole;
 
         public get accountRoleText() {
-            switch (this.accountRole) {
-                case AccountRole.Administrator: return "administrator";
-                case AccountRole.User: return "user";
-                default: return "";
-            }
+            return this.accountRole.toString();
         }
     }
 </script>

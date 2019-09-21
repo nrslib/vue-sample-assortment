@@ -1,5 +1,6 @@
 export enum AccountRole {
     Administrator = "administrator",
+    Advanced = "advanced",
     User = "user"
 }
 

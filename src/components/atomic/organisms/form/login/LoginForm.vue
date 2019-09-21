@@ -14,14 +14,13 @@
             <v-col cols="12" md="4">
                 <RadioButtonGroup v-model="role">
                     <RadioButton id="admin" value="administrator" label="administrator" />
+                    <RadioButton id="advanced" value="advanced" label="advanced" />
                     <RadioButton id="user" value="user" label="user" />
                 </RadioButtonGroup>
             </v-col>
-            <v-btn type="submit"
-                   color="success"
-                   class="mr-4">
+            <PrimaryButton type="submit" class="mr-4">
                 Login
-            </v-btn>
+            </PrimaryButton>
         </v-container>
     </v-form>
 </template>
@@ -32,9 +31,10 @@
     import RadioButtonGroup from "@/components/atomic/molecules/radio/RadioButtonGroup.vue";
     import RadioButton from "@/components/atomic/atoms/radio/RadioButton.vue";
     import wraxios from '@/library/net/wraxios';
+    import PrimaryButton from "@/components/atomic/atoms/button/PrimaryButton.vue";
 
     @Component({
-        components: {RadioButton, RadioButtonGroup, Textbox}
+        components: {PrimaryButton, RadioButton, RadioButtonGroup, Textbox}
     })
     export default class LoginForm extends Vue {
         public id: string = '';
