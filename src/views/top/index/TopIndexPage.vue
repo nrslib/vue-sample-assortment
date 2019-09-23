@@ -7,8 +7,8 @@
             <v-list>
                 <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title>たいとる</v-list-item-title>
-                        <v-list-item-subtitle>さぶたいとる</v-list-item-subtitle>
+                        <v-list-item-title>Hello</v-list-item-title>
+                        <v-list-item-subtitle>This is sample.</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -23,6 +23,5 @@
         components: {Contents}
     })
     export default class TopIndexPage extends Vue {
-
     }
 </script>

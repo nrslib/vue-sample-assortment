@@ -10,3 +10,7 @@ export interface IUserModel {
 export interface IUserCreateResponse {
     createdUuid: string;
 }
+
+export interface IUserGetDetailResponse {
+    user: IUserModel;
+}

@@ -13,9 +13,9 @@
         </v-container>
         <v-container>
             <List>
-                <ListItem v-for="(user, index) in users">
-                    <ListTitle :to="{name:'top'}">
-                        <LinkComponent :to="{name: 'top'}">
+                <ListItem v-for="(user, index) in users" :key="index">
+                    <ListTitle>
+                        <LinkComponent :to="{name:'user-detail', params: {id: user.id}}">
                             {{user.name}}
                         </LinkComponent>
                     </ListTitle>

@@ -1,5 +1,5 @@
 <template>
-    <v-btn :type="type" @click="onClick">
+    <v-btn :type="type" :to="to" @click="onClick">
         <slot />
     </v-btn>
 </template>

@@ -9,7 +9,12 @@ router.get('', (req, res) => {
 
 router.post('', (req, res) => {
     const json = debugDataLoader("user", "post");
-   res.json(json);
+    res.json(json);
+});
+
+router.get('/:id', (req, res) => {
+    const json = debugDataLoader("user", "get-detail");
+    res.json(json);
 });
 
 module.exports = router;
