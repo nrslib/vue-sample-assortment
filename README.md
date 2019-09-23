@@ -1,5 +1,9 @@
 # vue-sample-assortment
 
+* Humble error handling
+* Authentication approval
+* Structure of components
+
 ## Project setup
 ```
 npm install
@@ -10,17 +14,13 @@ npm install
 npm run serve
 ```
 
+### Run express server
+```
+npm run express
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
