@@ -6,14 +6,14 @@
       },
       "wraxios" : {
         "unregistered-error-message" : "予期せぬエラー（{errorCode}）",
-        "role-changed" : "権限が変更されました"
+        "role-changed" : "権限が不足しています"
       }
     },
     "error" : {
       "api" : {
         "/user" : {
-          "GET" : {
-            "test" : "GetError です"
+          "POST" : {
+            "too-long-name" : "ユーザー名が長すぎます"
           }
         }
       }

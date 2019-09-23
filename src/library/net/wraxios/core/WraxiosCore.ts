@@ -66,7 +66,7 @@ export default class WraxiosCore {
                         const clientErrorResponse = this.makeResponse(response.data);
                         errorHandler(clientErrorResponse);
                     } else {
-                        const unExpectedErrorHandler = this.selectUnexpectedErrorHandler(errorHandler, params.onUnexpectedError);
+                        const unExpectedErrorHandler = this.selectUnexpectedErrorHandler(params.onUnexpectedError);
                         unExpectedErrorHandler(resolve, reject, e);
                     }
                 });
@@ -120,7 +120,6 @@ export default class WraxiosCore {
     }
 
     private selectUnexpectedErrorHandler<T>(
-        onError: IErrorHandler,
         handler?: UnexpectedErrorHandler<T>,
     ): IUnexpectedErrorHandler {
         if (handler === null || handler === void 9) {
@@ -148,7 +147,7 @@ const notifyErrorToMessage: IErrorHandler = (response: IErrorResponse) => {
 };
 
 export function pushNextWithError(response: IErrorResponse, location: RawLocation) {
-    notifyeOnNextRoute(response);
+    notifyOnNextRoute(response);
     router.push(location);
 }
 
@@ -156,7 +155,7 @@ export function pushNextWithError(response: IErrorResponse, location: RawLocatio
  * Show message on next route
  * @param response
  */
-export function notifyeOnNextRoute(response: IErrorResponse) {
+export function notifyOnNextRoute(response: IErrorResponse) {
     response.errors
         .map(x => x.message)
         .forEach(message => ServiceLocator.instance.messageService.reserve(MessageType.Error, message));

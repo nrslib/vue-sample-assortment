@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router, {RouteConfig} from 'vue-router'
-import TopRoute from "@/views/top/TopRoute";
-import UserRoute from "@/views/user/UserRoute";
-import NotFoundRoute from "@/views/notfound/NotFoundRoute";
-import LoginRoute from "@/views/login/LoginRoute";
+import TopRoutes from "@/views/top/TopRoutes";
+import UserRoutes from "@/views/user/UserRoutes";
+import NotFoundRoutes from "@/views/notfound/NotFoundRoutes";
+import LoginRoutes from "@/views/login/LoginRoutes";
 import LogoutRoutes from "@/views/logout/LogoutRoutes";
 import ErrorRoutes from "@/views/error/ErrorRoutes";
 
@@ -17,11 +17,11 @@ Vue.use(Router);
 
 const routes: RouteConfig[] = [
     ErrorRoutes,
-    LoginRoute,
+    LoginRoutes,
     LogoutRoutes,
-    ...NotFoundRoute,
-    TopRoute,
-    UserRoute,
+    ...NotFoundRoutes,
+    TopRoutes,
+    UserRoutes,
 ];
 
 export default new Router({

@@ -1,5 +1,12 @@
 <template>
-    <Contents>
+    <ContentsWithBreadcrumbs>
+        <template slot="breadcrumbs">
+            <Breadcrumbs :items="[
+                    {text: 'user', to: {name: 'user-index'}, exact: true},
+                    {text: 'detail', to: {name: 'user-detail'}, exact: true}
+                ]"
+            />
+        </template>
         <v-container>
             <Heading1>User Detail</Heading1>
             <p>
@@ -14,7 +21,7 @@
                 Back
             </SecondaryButton>
         </v-container>
-    </Contents>
+    </ContentsWithBreadcrumbs>
 </template>
 
 <script lang="ts">
@@ -26,8 +33,10 @@
     import ListTitle from "@/components/atomic/atoms/list/ListTitle.vue";
     import Heading1 from "@/components/atomic/atoms/heading/Heading1.vue";
     import SecondaryButton from "@/components/atomic/atoms/button/SecondaryButton.vue";
+    import ContentsWithBreadcrumbs from "@/components/atomic/templates/contents/ContentsWithBreadcrumbs.vue";
+    import Breadcrumbs from "@/components/atomic/organisms/breadcrumbs/Breadcrumbs.vue";
     @Component({
-        components: {SecondaryButton, Heading1, ListTitle, ListItem, List}
+        components: {Breadcrumbs, ContentsWithBreadcrumbs, SecondaryButton, Heading1, ListTitle, ListItem, List}
     })
     export default class UserDetailPage extends Vue {
         public id: string = "";

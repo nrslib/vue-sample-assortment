@@ -24,7 +24,7 @@ export default (app, http) => {
     app.use(authority);
 
     app.use('/account', require('./routes/account'));
-    app.use('/user', authorize(), require('./routes/user'));
+    app.use('/user', authorize("advanced"), require('./routes/user'));
     app.use('/login', require('./routes/login'));
     app.use('/logout', require('./routes/logout'));
 

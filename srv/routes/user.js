@@ -1,18 +1,19 @@
 import express from 'express';
 const router = express.Router();
 import debugDataLoader from '../library/debug-data-loader';
+import authorize from "../middlewares/authorize-middleware";
 
-router.get('', (req, res) => {
+router.get('', authorize("advanced"), (req, res) => {
     const json = debugDataLoader("user", "get");
     res.json(json);
 });
 
-router.post('', (req, res) => {
+router.post('', authorize(), (req, res) => {
     const json = debugDataLoader("user", "post");
     res.json(json);
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authorize("advanced"), (req, res) => {
     const json = debugDataLoader("user", "get-detail");
     res.json(json);
 });

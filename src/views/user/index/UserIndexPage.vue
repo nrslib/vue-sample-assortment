@@ -1,3 +1,4 @@
+import {AccountRole} from "../../../library/account/AccountRole";
 <template>
     <ContentsWithBreadcrumbs>
         <template slot="breadcrumbs">
@@ -23,7 +24,7 @@
             </List>
         </v-container>
         <v-container>
-            <PrimaryButton @click="onAddButtonClick">Add</PrimaryButton>
+            <PrimaryButton v-if="showAddButton" @click="onAddButtonClick">Add</PrimaryButton>
         </v-container>
     </ContentsWithBreadcrumbs>
 </template>
@@ -40,13 +41,21 @@
     import Heading1 from "@/components/atomic/atoms/heading/Heading1.vue";
     import LinkComponent from "@/components/atomic/atoms/link/LinkComponent.vue";
     import PrimaryButton from "@/components/atomic/atoms/button/PrimaryButton.vue";
+    import {AccountRole} from "@/library/account/AccountRole";
+    import {Getter} from "vuex-class";
+
     @Component({
         components: {
             PrimaryButton,
             LinkComponent, Heading1, ListTitle, ListItem, List, Breadcrumbs, ContentsWithBreadcrumbs}
     })
     export default class UserIndexPage extends Vue {
-        public users:IUserModel[] = [];
+        @Getter("account/isAllowed") public accountIsAllowed!: (_: AccountRole) => boolean;
+        public users:IUserModel[] = []
+
+        public get showAddButton(): boolean {
+            return this.accountIsAllowed(AccountRole.Administrator);
+        }
 
         public created() {
             wraxios.get<IUserGetResponse>('/user')

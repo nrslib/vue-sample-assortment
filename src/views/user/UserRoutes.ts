@@ -8,22 +8,23 @@ import UserDetailPage from "@/views/user/detail/UserDetailPage.vue";
 export default {
     path: '/user',
     component: UserRootPage,
-    meta: {role: [AccountRole.Administrator, AccountRole.Advanced]},
     children: [
         {
             path: '',
             name: 'user-index',
-            component: UserIndexPage
+            component: UserIndexPage,
+            meta: {role: AccountRole.Advanced},
         },
         {
             path: ':id',
             name: 'user-detail',
             component: UserDetailPage,
+            meta: {role: AccountRole.Advanced},
         },
         {
             path: 'add/input',
             name: 'user-add-input',
-            component: UserAddInputPage
+            component: UserAddInputPage,
         },
         {
             path: 'add/confirm',
