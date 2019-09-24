@@ -18,7 +18,7 @@
                     <RadioButton id="user" value="user" label="user" />
                 </RadioButtonGroup>
             </v-col>
-            <PrimaryButton type="submit" class="mr-4">
+            <PrimaryButton type="submit" class="mr-4" :disabled="disabled">
                 Login
             </PrimaryButton>
         </v-container>
@@ -26,12 +26,12 @@
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Vue} from "vue-property-decorator";
+    import {Component, Emit, Prop, Vue} from "vue-property-decorator";
     import Textbox from "@/components/atomic/atoms/text/Textbox.vue";
     import RadioButtonGroup from "@/components/atomic/molecules/radio/RadioButtonGroup.vue";
     import RadioButton from "@/components/atomic/atoms/radio/RadioButton.vue";
-    import wraxios from '@/library/net/wraxios';
     import PrimaryButton from "@/components/atomic/atoms/button/PrimaryButton.vue";
+    import {ILoginRequest} from "@/library/dto/login";
 
     @Component({
         components: {PrimaryButton, RadioButton, RadioButtonGroup, Textbox}
@@ -41,20 +41,20 @@
         public password: string = '';
         public role: string ='administrator';
 
+        @Prop() public disabled?: boolean;
+
         public onSubmit(){
-            const payload = {
+            const payload: ILoginRequest = {
                 id: this.id,
                 password: this.password,
                 role: this.role
             };
 
-            wraxios.post('/login', payload)
-                .then(_ => {
-                    this.onLoggedIn();
-                });
+            this.submit(payload)
         }
 
-        @Emit('logged-in')
-        public onLoggedIn() {}
+        @Emit('submit')
+        public submit(model: ILoginRequest) {
+        }
     }
 </script>

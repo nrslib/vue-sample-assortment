@@ -5,8 +5,10 @@ export class ClientError {
     }
 }
 
-export default class ClientErrorResponse {
+export default class ClientParameterError extends Error {
     constructor(errors) {
+        super();
+
         this.errors = errors;
     }
 }

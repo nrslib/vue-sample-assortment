@@ -1,10 +1,12 @@
+import ClientParameterError, {ClientError} from "../library/errors/client-parameter-error";
+
 const express = require('express');
 const router = express.Router();
 
 router.post('/', (req, res) => {
     const body = req.body;
     if (!body || !body.id || !body.password || !body.role) {
-        throw new Error();
+        throw new ClientParameterError([new ClientError("parameter-invalid")]);
     }
 
     req.session.regenerate(error => {});

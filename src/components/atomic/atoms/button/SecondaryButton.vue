@@ -1,5 +1,8 @@
 <template>
-    <v-btn :type="type" :to="to" @click="onClick">
+    <v-btn :type="type"
+           :to="to"
+           :disabled="disabled"
+           @click="onClick">
         <slot />
     </v-btn>
 </template>

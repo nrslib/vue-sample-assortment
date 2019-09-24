@@ -12,6 +12,13 @@ import ServiceLocator from "@/library/service/ServiceLocator";
 import {MessageType} from "@/library/service/message/MessageType";
 import {RawLocation, Route} from "vue-router";
 
+export interface IOptionParameter<T> {
+    onError?: IErrorHandler;
+    onErrored?: () => void;
+    onUnexpectedError?: UnexpectedErrorHandler<T>;
+    config?: AxiosRequestConfig;
+}
+
 export default class WraxiosCore {
     private queueNum: number = 0;
 
@@ -22,23 +29,15 @@ export default class WraxiosCore {
         this.queueNum++;
     }
 
-    public request<T>(
-        method: Method,
-        url: string,
-        data?: any,
-        aParams?: {
-            onError?: IErrorHandler,
-            onUnexpectedError?: UnexpectedErrorHandler<T>,
-            config?: AxiosRequestConfig
-        }): Promise<WraxiosResponse<T>> {
+    public request<T>(method: Method, url: string, data?: any, aParams?: IOptionParameter<T>): Promise<WraxiosResponse<T>> {
         const params = aParams === null || aParams === void 0 ? {} : aParams!;
         const requestConfig: AxiosRequestConfig = !params || !params.config ? {} : params.config;
         requestConfig.method = method;
         requestConfig.url = url;
         requestConfig.data = data;
 
-        const errorHandler = this.selectErrorHandler(params.onError);
         const calledQueueNum = this.queueNum;
+
         return new Promise<WraxiosResponse<T>>((resolve, reject) => {
             axios.request<T>(requestConfig)
                 .then(res => {
@@ -64,7 +63,11 @@ export default class WraxiosCore {
                     const response = optResponse!;
                     if (response.status === 400) {
                         const clientErrorResponse = this.makeResponse(response.data);
+                        const errorHandler = this.selectErrorHandler(params.onError);
                         errorHandler(clientErrorResponse);
+                        if (!!params.onErrored) {
+                            params.onErrored();
+                        }
                     } else {
                         const unExpectedErrorHandler = this.selectUnexpectedErrorHandler(params.onUnexpectedError);
                         unExpectedErrorHandler(resolve, reject, e);
@@ -73,24 +76,11 @@ export default class WraxiosCore {
         });
     }
 
-    public get<T>(
-        url: string,
-        params?: {
-            onError?: IErrorHandler,
-            onUnexpectedError?: UnexpectedErrorHandler<T>,
-            config?: AxiosRequestConfig
-        }): Promise<WraxiosResponse<T>> {
+    public get<T>(url: string, params?: IOptionParameter<T>): Promise<WraxiosResponse<T>> {
         return this.request('get', url, null, params);
     }
 
-    public post<T>(
-        url: string,
-        data?: any,
-        params?: {
-            onError?: IErrorHandler,
-            onUnexpectedError?: UnexpectedErrorHandler<T>,
-            config?: AxiosRequestConfig
-        }): Promise<WraxiosResponse<T>> {
+    public post<T>(url: string, data?: any, params?: IOptionParameter<T>): Promise<WraxiosResponse<T>> {
         return this.request('post', url, data, params);
     }
 

@@ -1,3 +1,7 @@
 {
-  "createdUuid": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  "errors": [
+    {
+      "code": "my-error"
+    }
+  ]
 }

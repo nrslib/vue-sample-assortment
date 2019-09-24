@@ -1,4 +1,3 @@
-import {AccountRole} from "../../../library/account/AccountRole";
 <template>
     <ContentsWithBreadcrumbs>
         <template slot="breadcrumbs">

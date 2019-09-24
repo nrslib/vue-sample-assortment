@@ -7,6 +7,8 @@ export default class ButtonBase extends Vue {
 
     @Prop() public to?: RawLocation;
 
+    @Prop() public disabled?: boolean;
+
     @Emit("click")
     public onClick() {}
 }

@@ -19,9 +19,9 @@ async function transferLoginWhenNoAuth(to: Route, from: Route, next: Function): 
                 if (!ServiceLocator.instance.routeService.endure) {
                     ServiceLocator.instance.routeService.releaseOverwrite();
                     ServiceLocator.instance.routeService.saveBackRoute(to);
-                    next({name: 'login'});
-                    return true;
                 }
+                next({name: 'login'});
+                return true;
             }
         }
     }

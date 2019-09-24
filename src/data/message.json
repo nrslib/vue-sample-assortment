@@ -11,6 +11,11 @@
     },
     "error" : {
       "api" : {
+        "/login" :  {
+          "POST" : {
+            "parameter-invalid" : "入力値を確認してください"
+          }
+        },
         "/user" : {
           "POST" : {
             "too-long-name" : "ユーザー名が長すぎます"

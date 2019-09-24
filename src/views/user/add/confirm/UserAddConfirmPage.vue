@@ -77,9 +77,10 @@
         }
 
         public onSubmitButtonClick() {
-            wraxios.post<IUserCreateResponse>('user', this.model, { onError: (res) => {
-                    pushNextWithError(res, this.backLocation())
-                }})
+            wraxios.post<IUserCreateResponse>(
+                'user',
+                this.model,
+                { onError: (res) => { pushNextWithError(res, this.backLocation()); }})
                 .then(res=> {
                     const data = res.data;
                     this.$router.push({name: "user-detail", params: { id: data.createdUuid }})
