@@ -1,8 +1,5 @@
 <template>
     <v-breadcrumbs divider=">" :items="itemsWithTop">
-<!--        <BreadcrumbsItem v-for="(item, index) in itemsWithTop" :to="item.to" :key="index">-->
-<!--            {{item.text}}-->
-<!--        </BreadcrumbsItem>-->
     </v-breadcrumbs>
 </template>
 
@@ -18,7 +15,7 @@
 
         public get itemsWithTop(): IBreadcrumb[] {
             return [
-                {text: "Top", to: "/"}, // cannot use named route...
+                {text: "Top", to: "top-index"},
                 ...this.items
             ];
         }
